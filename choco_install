@@ -1,0 +1,7 @@
+###how to install the choco 
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+  ##once choco installe
+  choco install git
+choco install terraform
+choco install azure-cli
+  choco install vscode
