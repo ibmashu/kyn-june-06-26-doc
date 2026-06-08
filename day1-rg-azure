@@ -23,3 +23,15 @@ provider "azurerm" {
 ##save the file 
   #then do terraform int
   which will create a .terraform folder and if you expand the folder you will see the exe file
+#lets create our first resource group
+#create a new file resource.tf
+resource "azurerm_resource_group" "my_rg" {
+  name     = "gopal-ter-rg" #change it to your name
+  location = "eastus"
+}
+##run this below command 
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+###check that a resource group with your name is created in azure. 
