@@ -1,0 +1,29 @@
+##create a new file a2.subnet
+  resource "azurerm_subnet" "web_subnet" {
+  name                 =  "${var.subnet_name}-${local.resource_name_prefix}" #sap-dev
+  resource_group_name  = azurerm_resource_group.my_rg.name #rg
+  virtual_network_name = azurerm_virtual_network.vnet.name #vnet
+  address_prefixes     = var.subnet_address_prefixes
+
+  }
+
+###lets create the nsg a3.nsg.tf
+  resource "azurerm_network_security_group" "example" {
+ name                = "${var.subnet_name}-${local.resource_name_prefix}-nsg"
+  location            = azurerm_resource_group.my_rg.location
+  resource_group_name = azurerm_resource_group.my_rg.name
+  tags = local.project_tags
+}
+resource "azurerm_subnet_network_security_group_association" "nsg_association" {
+  subnet_id                 = azurerm_subnet.web_subnet.id
+  network_security_group_id = azurerm_network_security_group.example.id
+  
+}
+
+##after this do terraform apply
+  ###lets visualized the same
+  terraform graph
+  ###whatever output you get copy everything
+  ##paste in this website
+  https://dreampuf.github.io/GraphvizOnline
+  ##you will see the graphical view
