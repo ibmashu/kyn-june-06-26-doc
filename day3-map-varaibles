@@ -1,0 +1,22 @@
+#lets create a new file a6.instance-type.tf
+  variable "vm_instance_size" {
+  description = "map of the instance size with different environment"
+  type        = map(string) #dictionary of string values
+  default = {
+    "testing"     = "Standard_B1s",   #1 core processor and 1 Gb of RAM
+    "development" = "Standard_F2",    #2 core 4 GB RAM
+    "production"  = "Standard_D2s_v3" #2 core with 8 GB RAM
+  }
+}
+#in map of string you can define multiple default value in key value format
+#before this disable the windows vm /* */
+  #now go to a1.linux-vm.tf
+#############
+  #modify the line which show size
+  size                = var.vm_instance_size["testing"] 
+  ##after this do terraform apply
+  ##look into the instance planner it will show #standard b1s instance is geeting created
+  ##go to the azure portal check the instance type then again change it to development
+  #modify the line which show size
+  size                = var.vm_instance_size["development"] 
+  ##do again terraform apply go to azure portal check the instance size is change as per development "Standard_F2",
