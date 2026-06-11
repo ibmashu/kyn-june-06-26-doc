@@ -6,3 +6,9 @@
   #once the contianer is created we will change the region to 
   #go to generic varaibles file change the region to eastus
   #3then go to a9.bastion /* and */ and disable it
+backend "azurerm" {
+    resource_group_name   = "terraform-storage-gopal" #replace the same with your storage account rg
+    storage_account_name  = "terraformstoragegopal" #replace the same with your own storage account
+    container_name        = "tfstate" #name of the container
+    key                   = "project-1-eastus-terraform.tfstate" #state file will be stored with this name
+  }
