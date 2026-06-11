@@ -31,3 +31,14 @@ git config --global user.name "gopal"
    59  git commit -m "intialized calcy project"
   #this will show the version
    60  git log
+###lets do another commit and do the comparision
+  68  echo "we are starting add function" >> calcy.py
+   69  git status
+   70  git add calcy.py
+   71  git commit -m "added functionality"
+   72  git log
+   73  echo "lets check the difference between the last commit" >> calcy.py
+   74  git status
+   75  git diff
+   76  git checkout calcy.py
+   77  git status
