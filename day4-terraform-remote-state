@@ -1,0 +1,8 @@
+#lets delete some of the object from our terraform project folder
+  .terraform
+  terraform.tfstate
+  terraform.tfstate.backup
+  ##then we will go to azure portal and create the storge account
+  #once the contianer is created we will change the region to 
+  #go to generic varaibles file change the region to eastus
+  #3then go to a9.bastion /* and */ and disable it
