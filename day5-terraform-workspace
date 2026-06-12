@@ -51,21 +51,21 @@ subnet_address_prefixes=["10.0.1.0/24"]
   terraform init
   ###########################
   terraform workspace
-  terraform workspace dev
+  terraform workspace new dev
   terraform apply --var-file=dev.tfvars
   ############################
-  terraform workspace test
+  terraform workspace new test
   terraform apply --var-file=test.tfvars
     ############################
-  terraform workspace prod
+  terraform workspace new prod
   terraform apply --var-file=prod.tfvars
   ##once all the environment create check the state file in your storage account
   ##lets delete teh infra
-  terraform workspace prod
+  terraform workspace new prod
   terraform destroy --auto-approve
-  terraform workspace test 
+  terraform workspace select test 
    terraform destroy --auto-approve
-  terraform workspace dev
+  terraform workspace select dev
    terraform destroy --auto-approve
   
 
