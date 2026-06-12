@@ -1,0 +1,71 @@
+####terrraform workspace
+  #lets delete some file from azure. go to your storage account. and go inside container delete the tfstate file
+  ###then go to provider.tf file delete this lines inside the provider block
+    subscription_id = var.subscription_id
+  client_id = var.client_id
+  client_secret = var.client_secret
+  tenant_id = var.tenant_id
+  ##delete the varaible declaration
+  
+variable "client_id" {
+  type = string
+}
+ 
+variable "client_secret" {
+  type = string
+}
+ 
+variable "subscription_id" {
+  type = string
+}
+ 
+variable "tenant_id" {
+  type = string
+}
+##once you delete it lets create some varaibles files
+ #fir create  dev.tfvars
+  ###inside that put 
+  rg_name="gopal-ter-rg"
+location="eastus"
+environment="dev"
+business_unit="sap"
+subnet_name="dev-subnet"
+subnet_address_prefixes=["10.0.1.0/24"]
+##lets create another file test.tfvars
+  #in .tfvars file we define the name of varaibles and value against it
+rg_name="gopal-ter-rg"
+location="eastus"
+environment="test"
+business_unit="sap"
+subnet_name="test-subnet"
+subnet_address_prefixes=["10.0.1.0/24"]
+
+  #lets create prod.tfvars
+rg_name="gopal-ter-rg"
+location="eastus"
+environment="prod"
+business_unit="sap"
+subnet_name="prod-subnet"
+subnet_address_prefixes=["10.0.1.0/24"]
+#then do 
+  terraform init
+  ###########################
+  terraform workspace
+  terraform workspace dev
+  terraform apply --var-file=dev.tfvars
+  ############################
+  terraform workspace test
+  terraform apply --var-file=test.tfvars
+    ############################
+  terraform workspace prod
+  terraform apply --var-file=prod.tfvars
+  ##once all the environment create check the state file in your storage account
+  ##lets delete teh infra
+  terraform workspace prod
+  terraform destroy --auto-approve
+  terraform workspace test 
+   terraform destroy --auto-approve
+  terraform workspace dev
+   terraform destroy --auto-approve
+  
+
