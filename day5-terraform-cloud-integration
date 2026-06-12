@@ -1,0 +1,40 @@
+#lets modify the provider.tf file 
+  # Configure the Microsoft Azure Provider
+provider "azurerm" {
+  # resource_provider_registrations = "none" # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
+  features {}
+  subscription_id = var.subscription_id
+  client_id = var.client_id
+  client_secret = var.client_secret
+  tenant_id = var.tenant_id
+}
+
+variable "client_id" {
+  type = string
+}
+ 
+variable "client_secret" {
+  type = string
+}
+ 
+variable "subscription_id" {
+  type = string
+}
+ 
+variable "tenant_id" {
+  type = string
+}
+
+#we need to upload the code in github
+  #before that i need to create a new file .gitignore 
+.terraform
+.terraform.lock.hcl
+*.tfstate   
+  #now we need to intialzied the repo 
+  git init
+  git add .
+  git commit -m "terraform project"
+  git log
+  ###after this we will create a repo in github
+#get the remote repo
+  git push origin master
